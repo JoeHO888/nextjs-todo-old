@@ -4,8 +4,8 @@ export default async (req, res) => {
     }
     let todo = encodeURI(req.query.todo)
 
-    const token = "REPLACE_YOUR_TOKEN";
-    const url = "https://REPLACE_YOUR_ENDPOINT/lrem/todo/1/" + todo + "?_token=" + token;
+    const token = process.env.UPSTASH_TOKEN;
+    const url = `https://${process.env.UPSTASH_DOMAIN}/lrem/todo/1/` + todo + "?_token=" + token;
 
     return fetch(url)
         .then(r => r.json())
